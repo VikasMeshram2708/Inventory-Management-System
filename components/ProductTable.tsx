@@ -1,10 +1,8 @@
-import GetProducts from "@/actions/GetProducts";
-import { SampleProducts } from "@/seed";
-
-export default async function ProductTable() {
-  const ProductData = GetProducts();
-  const products:Product[] = await ProductData;
-
+export default async function ProductTable({
+  products,
+}: {
+  products: Product[];
+}) {
   return (
     <section className="container mx-auto p-6">
       <form className="container mx-auto border rounded p-6">
@@ -20,8 +18,10 @@ export default async function ProductTable() {
           </thead>
           <tbody>
             {products?.map((item, index) => (
-              <tr key={item?.name} className="bg-slate-700 hover:bg-slate-600">
-                <td className="cursor-pointer border px-4 py-2">{index + 1}</td>
+              <tr key={item?.id} className="bg-slate-700 hover:bg-slate-600">
+                <td className="cursor-pointer border px-4 py-2">
+                  {index+1}
+                </td>
                 <td className="cursor-pointer border px-4 py-2">
                   {item?.name}
                 </td>
